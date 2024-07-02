@@ -1,4 +1,4 @@
-# Manga Scraper API
+# Manga Scraper API [under development]
 
 This is a FastAPI-based web application for scraping manga information from various sources including Manganato, Mangareader, Mangapill, and Asurascans.
 
