@@ -6,6 +6,7 @@ from src.manganato import Manganato
 from src.mangareader import Mangareader
 from src.mangapill import Mangapill
 from src.asurascans import Asurascans
+from src.flamescans import Flamescans
 
 app = FastAPI()
 
@@ -130,7 +131,24 @@ def asurascans(category:str, path:str):
     else:
         return {
             "detail": "Invalid parameter"
-        }      
+        }   
+
+# Flamescans
+@app.get("/flamescans/{category}/{path:path}")
+def flamescans(category:str, path:str):
+    if category == "search":
+        return Flamescans().search(query=path)
+    elif category == "info":
+        return Flamescans().info(id=path)
+    elif category == "pages":
+        return Flamescans().pages(id=path)
+    elif category == "sort":
+        return Flamescans().sort(type=path)
+        # accepts: title, titlereverse, update, popular, added
+    else:
+        return {
+            "detail": "Invalid parameter"
+        }   
         
 if __name__ == "__main__":
 	uvicorn.run(app=app)

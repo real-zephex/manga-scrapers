@@ -1,2 +1,1 @@
-s"] = [i.get("src") for i in imgSelector]
-			return self.results
+i.get_text().split(",") for i in genreSelector
