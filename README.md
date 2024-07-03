@@ -71,6 +71,12 @@ This is a FastAPI-based web application for scraping manga information from vari
 - **GET /asurascans/genres/{path}**: Get manga by genre type.
 - **GET /asurascans/genre-list**: Get the list of genres.
 
+### Flamescans
+- **GET /flamescans/search/{path}**: Search manga by title
+- **GET /flamescans/info/{path}**: Get manga info by ID.
+- **GET /flamescans/pages/{path}**: Get manga pages by ID.
+- **GET /flamescans/sort/{path}**: Get the popular manga. Accepts `title`, `titlereverse`, `update`, `popular`, `added`
+
 ## Example Queries
 
 - **Manganato Search**: `GET /manganato/search/one_piece`
