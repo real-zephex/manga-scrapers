@@ -5,6 +5,11 @@ class Asurascans:
 	def __init__(self) -> None:
 		self.proxy_url = "https://sup-proxy.zephex0-f6c.workers.dev/api-text?url="
 		self.parent_url = "https://asurascans.io/"
+		self.headers = {
+			'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+			'Accept-Language': 'en-US,en;q=0.9',
+			'Accept-Encoding': 'gzip, deflate, br'
+      	}
 		self.results  = {
 			"status": "",
 			"results": []
@@ -13,7 +18,7 @@ class Asurascans:
 	def search(self, query:str):
 		try:
 			url = f"{self.proxy_url}{self.parent_url}/?s={query}"
-			response = requests.get(url)
+			response = requests.get(url, headers=self.headers)
 			self.results["status"] = response.status_code
 			soup = BeautifulSoup(response.content, "html.parser")
 
