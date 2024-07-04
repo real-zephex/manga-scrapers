@@ -24,7 +24,7 @@ class Mangareader:
 				tempContent = {}	
 				tempContent["title"] = items.find("a").get_text()
 				tempContent["id"] = items.find("a").get("href").split("/")[2]
-				tempContent["image"] = f"{self.parent_url}{items.find("div", class_="d56").get("data-src")}"
+				tempContent["image"] = f"{self.parent_url}{items.find('div', class_='d56').get("data-src")}"
 				tempContent["chapters"] = items.find("div", class_="d58").get_text().split(" ")[0]
 				tempContent["status"] = items.find("div", class_="d58").get_text().rsplit(" ")[3]
 				tempContent["genres"] = items.find("div", class_="d60").get_text().replace("\n", "").replace(" ", "").split(",")[:-1]
