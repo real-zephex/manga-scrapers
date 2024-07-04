@@ -8,7 +8,8 @@ class Asurascans:
 		self.headers = {
 			'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
 			'Accept-Language': 'en-US,en;q=0.9',
-			'Accept-Encoding': 'gzip, deflate, br'
+			'Accept-Encoding': 'gzip, deflate, br',
+			'Referer': "https://asurascans.io/?__cf_chl_tk=wfsak0UJH7mVJX59v3ekHNU_M9kwvidjc9e.XTk5vQ4-1720114172-0.0.1.1-7039"
       	}
 		self.results  = {
 			"status": "",
