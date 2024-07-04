@@ -1,6 +1,5 @@
 from fastapi import FastAPI, Response
 import requests
-import uvicorn
 
 from src.manganato import Manganato
 from src.mangareader import Mangareader
@@ -150,5 +149,3 @@ def flamescans(category:str, path:str):
             "detail": "Invalid parameter"
         }   
         
-if __name__ == "__main__":
-	uvicorn.run(app=app)
