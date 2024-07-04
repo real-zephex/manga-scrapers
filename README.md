@@ -39,6 +39,13 @@ This is a FastAPI-based web application for scraping manga information from vari
       "message": "Welcome to the manganato scraper"
   }
 
+## Sources Supported
+1. [Manganato](https://manganato.com/)
+2. [Mangareader](https://mangareader.tv/)
+3. [Mangapill](https://mangapill.com/)
+4. [Asurascans](https://asurascans.io/)
+
+
 ### Manganato
 - **GET /manganato/search/{path}**: Search manga by query.
 - **GET /manganato/info/{path}**: Get manga info by ID.
