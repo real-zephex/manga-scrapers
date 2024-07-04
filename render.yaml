@@ -1,0 +1,11 @@
+services:
+- type: web
+  name: Manga-Scraper
+  runtime: python
+  repo: https://github.com/real-zephex/manga-scrapers
+  branch: main
+  plan: free
+  region: singapore
+  buildCommand: pip install -r requirements.txt
+  startCommand: gunicorn main:app
+version: "1"
