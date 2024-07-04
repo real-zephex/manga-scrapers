@@ -43,7 +43,8 @@ This is a FastAPI-based web application for scraping manga information from vari
 1. [Manganato](https://manganato.com/)
 2. [Mangareader](https://mangareader.tv/)
 3. [Mangapill](https://mangapill.com/)
-4. [Asurascans](https://asurascans.io/)
+4. [Asurascans](https://asurascans.io/) - not working on demo site, works when hosted locally (help needed)
+5. [Flamecomics](https://flamecomics.me/)
 
 
 ### Manganato
@@ -78,7 +79,7 @@ This is a FastAPI-based web application for scraping manga information from vari
 - **GET /asurascans/genres/{path}**: Get manga by genre type.
 - **GET /asurascans/genre-list**: Get the list of genres.
 
-### Flamescans
+### Flamecomics
 - **GET /flamescans/search/{path}**: Search manga by title
 - **GET /flamescans/info/{path}**: Get manga info by ID.
 - **GET /flamescans/pages/{path}**: Get manga pages by ID.
