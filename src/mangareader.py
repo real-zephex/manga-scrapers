@@ -24,7 +24,7 @@ class Mangareader:
 				tempContent = {}	
 				tempContent["title"] = items.find("a").get_text()
 				tempContent["id"] = items.find("a").get("href").split("/")[2]
-				tempContent["image"] = f"{self.parent_url}{items.find('div', class_='d56').get("data-src")}"
+				tempContent["image"] = f"{self.parent_url}{items.find('div', class_='d56').get('data-src')}"
 				tempContent["chapters"] = items.find("div", class_="d58").get_text().split(" ")[0]
 				tempContent["status"] = items.find("div", class_="d58").get_text().rsplit(" ")[3]
 				tempContent["genres"] = items.find("div", class_="d60").get_text().replace("\n", "").replace(" ", "").split(",")[:-1]
@@ -43,7 +43,7 @@ class Mangareader:
 			soup = BeautifulSoup(response.content, "html.parser")
 
 			tempContent = {}
-			tempContent["image"] = f"{self.parent_url}{soup.select_one("#main > div.d14 > div > div.d37 > div.d38 > img").get("src")}"
+			tempContent["image"] = f"{self.parent_url}{soup.select_one('#main > div.d14 > div > div.d37 > div.d38 > img').get('src')}"
 			tempContent["title"] = soup.select_one("#main > div.d14 > div > div.d37 > div.d39 > div.d40").get_text()
 			tempContent["status"] = soup.select_one("#main > div.d14 > div > div.d37 > div.d39 > table > tbody > tr:nth-child(4) > td:nth-child(2)").get_text()
 			tempContent["author"] = soup.select_one("#main > div.d14 > div > div.d37 > div.d39 > table > tbody > tr:nth-child(5) > td:nth-child(2)").get_text().strip().split(",")[0]
@@ -97,7 +97,7 @@ class Mangareader:
 				tempContent = {}
 				tempContent["title"] = card.find("div", class_="d42").find("a").get_text()
 				tempContent["id"] = card.find("div", class_="d42").find("a").get("href").split("/")[2]
-				tempContent["image"] = f"{self.parent_url}{card.find("div", class_="d41").get("data-src")}"
+				tempContent["image"] = f"{self.parent_url}{card.find('div', class_='d41').get('data-src')}"
 				tempContent["author"] = card.find("div", class_="d43").get_text().strip().replace("\n", "").split(",")[:-1]
 				tempContent["chapters"] = card.find("div", class_="d44").get_text().strip().split(" ")[0].replace("\xa0", " ")
 				tempContent["status"] = card.find("div", class_="d44").get_text().strip().split(" ")[-1][1:-1]
