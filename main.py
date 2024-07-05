@@ -19,6 +19,10 @@ def homepage():
 		}
 	)
 
+@app.head("/")
+async def read_root_head():
+    return Response(headers={"Custom-Header": "Value"})
+
 # Manganato
 @app.get("/manganato/{category}/{path:path}")
 def manganato(category: str, path: str = None):
