@@ -115,7 +115,9 @@ def mangapill(category:str, path:str):
 @app.get("/asurascans/{category}/{path:path}")
 def asurascans(category:str, path:str):
     if category == "search":
-        return Asurascans().search(query=path)
+        if path:
+            newQuery = path.replace(" ", "+")
+            return Asurascans().search(query=newQuery)
     elif category == "info":
         return Asurascans().info(id=path)
     elif category == "pages":
