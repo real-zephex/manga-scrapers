@@ -19,7 +19,6 @@ class Flamescans:
 			soup = BeautifulSoup(response.content, "html.parser")
 
 			cards = soup.select("div.wrapper > div.postbody > div > div.listupd > div > div")
-			content = []
 
 			for items in cards:
 				tempContent = {}
@@ -27,9 +26,8 @@ class Flamescans:
 				tempContent["id"] = items.find("a").get("href").rsplit("/", 2)[-2]
 				tempContent["image"] = items.find("img", class_="ts-post-image wp-post-image attachment-medium size-medium").get("src")
 				tempContent["status"] = items.find("a").find("div", class_="bigor").find("div", class_="extra-info").find("div", class_="imptdt").find("div", class_="status").find("i").get_text()
-				content.append(tempContent)		
+				self.results["results"].append(tempContent)
 
-			self.results["results"].append(content)
 			return self.results
 		except Exception as e:
 			self.results["results"] = e
@@ -70,7 +68,7 @@ class Flamescans:
 				chapter.append(tempChapter)
 			content["chapters"] = chapter
 
-			self.results["results"].append(content)
+			self.results["results"] = content
 			return self.results
 
 		except Exception as e:
@@ -100,7 +98,6 @@ class Flamescans:
 			soup = BeautifulSoup(response.content, "html.parser")
 
 			cardsSelector = soup.select("div.wrapper > div.postbody > div.bixbox.seriesearch > div.mrgn > div.listupd > div > div.bsx")
-			content = []
 
 			for items in cardsSelector:
 				tempContent = {}
@@ -108,9 +105,8 @@ class Flamescans:
 				tempContent["id"] = items.find("a").get("href").rsplit("/", 2)[-2]
 				tempContent["image"] = items.find("img", class_="ts-post-image wp-post-image attachment-medium size-medium").get("src")
 				tempContent["status"] = items.find("a").find("div", class_="bigor").find("div", class_="extra-info").find("div", class_="imptdt").find("div", class_="status").find("i").get_text()
-				content.append(tempContent)		
+				self.results["results"].append(tempContent)
 
-			self.results["results"].append(content)
 			return self.results
 
 		except Exception as e:

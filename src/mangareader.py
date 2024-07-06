@@ -6,7 +6,7 @@ class Mangareader:
 		self.parent_url = "https://mangareader.tv"
 		self.proxy_url = "https://sup-proxy.zephex0-f6c.workers.dev/api-text?url="
 		self.results  = {
-			"status": "",
+			"status": None,
 			"results": []
 		}
 	def search(self, query:str):
@@ -18,7 +18,6 @@ class Mangareader:
 			soup = BeautifulSoup(response.content, "html.parser")
 
 			cards = soup.select("#ares > div > table > tbody > tr")
-			content = []
 
 			for items in cards:
 				tempContent = {}	
@@ -28,8 +27,8 @@ class Mangareader:
 				tempContent["chapters"] = items.find("div", class_="d58").get_text().split(" ")[0]
 				tempContent["status"] = items.find("div", class_="d58").get_text().rsplit(" ")[3]
 				tempContent["genres"] = items.find("div", class_="d60").get_text().replace("\n", "").replace(" ", "").split(",")[:-1]
-				content.append(tempContent)
-			self.results["results"].append(content)
+				self.results["results"].append(tempContent)
+
 			return self.results
 		except Exception as e:
 			self.results["results"] = e
@@ -60,7 +59,8 @@ class Mangareader:
 				chapterList.append(tempChapter)
 
 			tempContent["chapters"] = chapterList
-			return tempContent
+			self.results["results"] = tempContent
+			return self.results
 
 		except Exception as e:
 			self.results["results"] = e
@@ -76,7 +76,7 @@ class Mangareader:
 			imgSelectors = soup.select("#ib > div > img")
 			images = [i.get("data-src") for i in imgSelectors]
 
-			self.results["results"].append(images)
+			self.results["results"] = images
 			return self.results
 
 		except Exception as e:
@@ -91,7 +91,6 @@ class Mangareader:
 			soup = BeautifulSoup(response.content, "html.parser")
 
 			cards = soup.select("#main > div.d14 > div > div.d38 > div.d39 > table > tbody > tr")
-			content = []
 
 			for card in cards:
 				tempContent = {}
@@ -102,8 +101,7 @@ class Mangareader:
 				tempContent["chapters"] = card.find("div", class_="d44").get_text().strip().split(" ")[0].replace("\xa0", " ")
 				tempContent["status"] = card.find("div", class_="d44").get_text().strip().split(" ")[-1][1:-1]
 				tempContent["genres"] = card.find("div", class_="d46").get_text().strip().replace(" ", "").replace("\n", " ").split(",")[:-1]
-				content.append(tempContent)
-			self.results["results"].append(content)
+				self.results["results"].append(tempContent)
 			return self.results
 
 		except Exception as e:
