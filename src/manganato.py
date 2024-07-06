@@ -13,7 +13,8 @@ class Manganato:
 
 	def search(self, query):
 		try:
-			url = f"{self.proxy_url}{self.parent_url}/search/story/{query}"
+			newQuery = query.replace(" ", "_")
+			url = f"{self.proxy_url}{self.parent_url}/search/story/{newQuery}"
 			response = requests.get(url)
 			self.results["status"] = response.status_code
 			soup = BeautifulSoup(response.content, "html.parser")

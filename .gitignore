@@ -1,3 +1,5 @@
 .vercel
 test.txt
 /temp
+/__pycache__
+/.pytest_cache

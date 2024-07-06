@@ -1,1 +1,0 @@
-i.get_text().split(",") for i in genreSelector
