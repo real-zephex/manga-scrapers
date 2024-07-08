@@ -152,4 +152,3 @@ def flamescans(category:str, path:str):
         return {
             "detail": "Invalid parameter"
         }   
-        
