@@ -64,7 +64,7 @@ class Mangaworld:
 				tempChapter["id"] = item.find("a", class_="chap").get("href").split("/", 3)[3]
 				tempChapter["title"] = item.find("a", class_="chap").get("title")
 				chapter.append(tempChapter)
-			content["chapter"] = chapter[::-1]
+			content["chapters"] = chapter[::-1]
 
 			self.results["results"] = content
 			return self.results
