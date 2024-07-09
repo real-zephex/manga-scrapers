@@ -19,7 +19,6 @@ class Mangapill:
 			soup = BeautifulSoup(response.content, "html.parser")
 
 			cards = soup.select("body > div.container.py-3 > div.my-3.grid.justify-end.gap-3.grid-cols-2 > div")
-			content = []
 
 			for items in cards:
 				tempContent = {}
@@ -34,9 +33,8 @@ class Mangapill:
 				tempContent["type"] = genresSelector[0].get_text()
 				tempContent["year"] = genresSelector[1].get_text()
 				tempContent["status"] = genresSelector[2].get_text()
-				content.append(tempContent)
+				self.results["results"].append(tempContent)
 
-			self.results["results"].append(content)
 			return self.results
 		except Exception as e:
 			self.results["results"] = e
@@ -69,7 +67,7 @@ class Mangapill:
 				chapters.append(tempChapters)
 			tempContent["chapters"] = chapters
 
-			self.results["results"].append(tempContent)
+			self.results["results"] = tempContent
 			return self.results
 		except Exception as e:
 			self.results["results"] = e
@@ -98,7 +96,6 @@ class Mangapill:
 			soup = BeautifulSoup(response.content, "html.parser")	
 
 			cards = soup.select("body > div.container.py-3 > div.grid.justify-end.gap-3.grid-cols-2 > div")
-			content = []
 
 			for items in cards:
 				tempContent = {}
@@ -113,9 +110,8 @@ class Mangapill:
 				tempContent["type"] = genresSelector[0].get_text()
 				tempContent["year"] = genresSelector[1].get_text()
 				tempContent["status"] = genresSelector[2].get_text()
-				content.append(tempContent)
+				self.results["results"].append(tempContent)
 
-			self.results["results"].append(content)
 			return self.results
 		except Exception as e:
 			self.results["results"] = e
