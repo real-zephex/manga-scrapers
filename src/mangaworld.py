@@ -57,8 +57,10 @@ class Mangaworld:
 			content["genres"] = ", ".join(i.get_text() for i in infoPaneSelector.find("div", class_="meta-data").find_all("div", class_="col-12")[1].find_all("a"))
 
 			chapterSelector = soup.select("#chapterList > div.chapters-wrapper.py-2.pl-0 > div > div.volume-chapters.pl-2 > div.chapter")
+			if len(chapterSelector) == 0:
+				chapterSelector = soup.select("#chapterList > div.chapters-wrapper.py-2.pl-0 > div")
 			chapter = []
-
+			
 			for item in chapterSelector:
 				tempChapter = {}
 				tempChapter["id"] = item.find("a", class_="chap").get("href").split("/", 3)[3]
@@ -87,3 +89,5 @@ class Mangaworld:
 		except Exception as e:
 			self.results["results"] = e
 			return self.results
+
+print(Mangaworld().info("manga/1941/omniscient-reader-s-viewpoint"))
