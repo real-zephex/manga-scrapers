@@ -65,7 +65,7 @@ class Mangapill:
 				tempChapters["title"] = items.get_text()
 				tempChapters["id"] = items.get("href").split("/", 1)[1]
 				chapters.append(tempChapters)
-			tempContent["chapters"] = chapters
+			tempContent["chapters"] = chapters[::-1]
 
 			self.results["results"] = tempContent
 			return self.results

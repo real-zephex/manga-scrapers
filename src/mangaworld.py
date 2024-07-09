@@ -57,7 +57,6 @@ class Mangaworld:
 			content["genres"] = ", ".join(i.get_text() for i in infoPaneSelector.find("div", class_="meta-data").find_all("div", class_="col-12")[1].find_all("a"))
 
 			chapterSelector = soup.select("#chapterList > div.chapters-wrapper.py-2.pl-0 > div > div.volume-chapters.pl-2 > div.chapter")
-			print(len(chapterSelector))
 			chapter = []
 
 			for item in chapterSelector:
@@ -65,7 +64,7 @@ class Mangaworld:
 				tempChapter["id"] = item.find("a", class_="chap").get("href").split("/", 3)[3]
 				tempChapter["title"] = item.find("a", class_="chap").get("title")
 				chapter.append(tempChapter)
-			content["chapter"] = chapter
+			content["chapter"] = chapter[::-1]
 
 			self.results["results"] = content
 			return self.results

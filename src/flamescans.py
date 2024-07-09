@@ -66,7 +66,7 @@ class Flamescans:
 				tempChapter["id"] = chap.find("a").get("href").rsplit("/", 2)[-2]
 				tempChapter["title"] = chap.find("div", class_="chbox").find("div", class_="eph-num").find("span", class_="chapternum").get_text().strip().replace("\n", " ")
 				chapter.append(tempChapter)
-			content["chapters"] = chapter
+			content["chapters"] = chapter[::-1]
 
 			self.results["results"] = content
 			return self.results
