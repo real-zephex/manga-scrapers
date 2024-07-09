@@ -6,6 +6,7 @@ from src.mangareader import Mangareader
 from src.mangapill import Mangapill
 from src.asurascans import Asurascans
 from src.flamescans import Flamescans
+from src.mangaworld import Mangaworld
 
 app = FastAPI()
 
@@ -153,3 +154,15 @@ def flamescans(category:str, path:str):
             "detail": "Invalid parameter"
         }   
         
+@app.get("/mangaworld/{category}/{path:path}")
+def mangaworld(category:str, path:str):
+    if category == "search":
+        return Mangaworld().search(query=path)
+    elif category == "info":
+        return Mangaworld().info(id=path)
+    elif category == "pages":
+        return Mangaworld().pages(id=path)
+    else:
+        return {
+            "detail": "Invalid parameter"
+        }
