@@ -173,7 +173,7 @@ def mangaworld(category:str, path:str):
         }
     
 @app.get("/mangapark/{category}/{path:path}")
-def mangaworld(category:str, path:str):
+def mangapark(category:str, path:str):
     if category == "search":
         return Mangapark().search(query=path)
     elif category == "info":
