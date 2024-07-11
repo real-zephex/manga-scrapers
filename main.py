@@ -95,6 +95,8 @@ def mangapill(category:str, path:str):
         return Mangapill().pages(id=path)
     elif category == "newest":
         return Mangapill().new()
+    elif category == "recent":
+        return Mangapill().recent()
     elif category == "images":
         if path:
             headers = {

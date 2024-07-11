@@ -88,7 +88,7 @@ class Mangapill:
 			self.results["results"] = e
 			return self.results	
 
-	def new(self): # Same as search
+	def new(self, type:str): # Same as search
 		try:
 			url = f"{self.proxy_url}{self.parent_url}/mangas/new"
 			response = requests.get(url)
@@ -116,3 +116,26 @@ class Mangapill:
 		except Exception as e:
 			self.results["results"] = e
 			return self.results	
+
+	def recent(self): # Same as search
+		try:
+			url = f"{self.proxy_url}{self.parent_url}/chapters"
+			response = requests.get(url)
+			self.results["status"] = response.status_code
+			soup = BeautifulSoup(response.content, "html.parser")	
+
+			cards = soup.select("body > div.container.py-3 > div.grid.grid-cols-2 > div")
+
+			for items in cards:
+				tempContent = {}
+				tempContent["id"] = items.find("div", class_="px-1").find("a", class_="mt-1.5 leading-tight text-secondary").get("href").split("/", 1)[1]
+				tempContent["image"] = items.find("a").find("figure").find("img").get("data-src")
+				tempContent["title"] = items.find("div", class_="px-1").find("a", class_="mt-1.5 leading-tight text-secondary").find("div", class_="line-clamp-2 text-sm font-bold").get_text()
+				self.results["results"].append(tempContent)
+
+			return self.results
+		except Exception as e:
+			self.results["results"] = e
+			return self.results	
+
+print(Mangapill().recent())
