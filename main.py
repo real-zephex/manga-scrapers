@@ -162,6 +162,10 @@ def mangaworld(category:str, path:str):
         return Mangaworld().info(id=path)
     elif category == "pages":
         return Mangaworld().pages(id=path)
+    elif category == "trending":
+        return Mangaworld().trending()
+    elif category == "popular":
+        return Mangaworld().popular(page=path)
     else:
         return {
             "detail": "Invalid parameter"

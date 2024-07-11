@@ -90,4 +90,49 @@ class Mangaworld:
 			self.results["results"] = e
 			return self.results
 
-print(Mangaworld().info("manga/1941/omniscient-reader-s-viewpoint"))
+	def trending(self):
+		try:
+			url = f"{self.proxy_url}{self.parent_url}"
+			response = requests.get(url)
+			self.results["status"] = response.status_code
+			soup = BeautifulSoup(response.content, "html.parser")
+
+			trendingCardsSelector = soup.select("#popular > div.row > div.col-12 > div.comics-flex > div.vertical")
+
+			for card in trendingCardsSelector:
+				tempContent = {}
+				tempContent["title"] = card.find("a", class_="thumb").get("title")
+				tempContent["id"] = card.find("a", class_="thumb").get("href").split("/", 3)[3]
+				tempContent["image"] = card.find("a", class_="thumb").find("img").get("src")
+				tempContent["chapterReleased"] = card.find("a", class_="thumb").find("div", class_="chapter").get_text()
+				self.results["results"].append(tempContent)
+
+			return self.results
+		except Exception as e:
+			self.results["results"] = e
+			return self.results
+
+	def popular(self, page:str = "1"):
+		try:
+			url = f"{self.proxy_url}{self.parent_url}/?page={page}"
+			response = requests.get(url)
+			self.results["status"] = response.status_code
+			soup = BeautifulSoup(response.content, "html.parser")
+
+			cardsSelector = soup.select("body > div.container > div > div.col-sm-12.col-md-8.col-xl-9 > div.comics-grid > div")
+
+			for card in cardsSelector:
+				tempContent = {}
+				tempContent["title"] = card.find("a", class_="thumb").get("title")
+				tempContent["id"] = card.find("a", class_="thumb").get("href").split("/", 3)[3]
+				tempContent["image"] = card.find("a", class_="thumb").find("img").get("src")
+				tempContent["type"] = card.find("div", class_="content").find("div", class_="genre").find("a").get_text()
+				tempContent["status"] = card.find("div", class_="content").find("div", class_="status").find("a").get_text()
+
+
+				self.results["results"].append(tempContent)
+
+			return self.results
+		except Exception as e:
+			self.results["results"] = e
+			return self.results
