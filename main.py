@@ -7,6 +7,7 @@ from src.mangapill import Mangapill
 from src.asurascans import Asurascans
 from src.flamescans import Flamescans
 from src.mangaworld import Mangaworld
+from src.mangapark import Mangapark
 
 app = FastAPI()
 
@@ -166,6 +167,21 @@ def mangaworld(category:str, path:str):
         return Mangaworld().trending()
     elif category == "popular":
         return Mangaworld().popular(page=path)
+    else:
+        return {
+            "detail": "Invalid parameter"
+        }
+    
+@app.get("/mangapark/{category}/{path:path}")
+def mangaworld(category:str, path:str):
+    if category == "search":
+        return Mangapark().search(query=path)
+    elif category == "info":
+        return Mangapark().info(id=path)
+    elif category == "pages":
+        return Mangapark().pages(id=path)
+    elif category == "latest":
+        return Mangapark().latest(page=path)
     else:
         return {
             "detail": "Invalid parameter"
