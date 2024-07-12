@@ -8,6 +8,7 @@ from src.asurascans import Asurascans
 from src.flamescans import Flamescans
 from src.mangaworld import Mangaworld
 from src.mangapark import Mangapark
+from src.scanvf import Scanvf
 
 app = FastAPI()
 
@@ -188,3 +189,17 @@ def mangapark(category:str, path:str):
         return {
             "detail": "Invalid parameter"
         }
+    
+@app.get("/scanvf/{category}/{path:path}")
+def scanvf(category:str, path:str):
+    if category == "search":
+        return Scanvf().search(query=path)
+    elif category == "info":
+        return Scanvf().info(id=path)
+    elif category == "pages":
+        return Scanvf().pages(id=path)
+    else:
+        return {
+            "detail": "Invalid parameter"
+        }
+    
