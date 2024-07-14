@@ -63,7 +63,7 @@ class Manganato:
 
 			tempContent["chapters"] = chapDic
 
-			self.results["results"].append(tempContent)
+			self.results["results"] = tempContent
 			return self.results
 		except Exception as e:
 			self.results["results"] = e
