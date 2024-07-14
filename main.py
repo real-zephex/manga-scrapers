@@ -47,7 +47,7 @@ def manganato(category: str, path: str = None):
             return Manganato().newest(page=path)
         else:
             return Manganato().newest()
-    elif category == "hotest":
+    elif category == "hottest":
         if path:
             return Manganato().hotest(page=path)
         else:

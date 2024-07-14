@@ -20,7 +20,6 @@ class Manganato:
 			soup = BeautifulSoup(response.content, "html.parser")
 
 			cards = soup.select("body > div.body-site > div.container.container-main > div.container-main-left > div.panel-search-story > div")
-			content = []
 
 			for items in cards:
 				tempContent = {}
@@ -30,8 +29,7 @@ class Manganato:
 				tempContent["author"] = items.find("span", class_="item-author").get("title")
 				tempContent["heading"] = items.find("a")["title"]
 				tempContent["updated"] = items.find("span", class_="item-time").get_text().split(":", 1)[1].strip().split(" - ")
-				content.append(tempContent)
-			self.results["results"].append(content)
+				self.results["results"].append(tempContent)
 
 			return self.results
 		except Exception as e:
@@ -95,7 +93,6 @@ class Manganato:
 			soup = BeautifulSoup(response.content, "html.parser")
 
 			cards = soup.select("body > div.body-site > div.container.container-main > div.panel-content-genres > div")
-			content = []
 			
 			for items in cards:
 					tempContent = {}
@@ -106,8 +103,7 @@ class Manganato:
 					tempContent["date"] = infoSelector.find("span", class_="genres-item-time").get_text()
 					tempContent["author"] = infoSelector.find("span", class_="genres-item-author").get_text()
 					tempContent["description"] = items.select_one("body > div.body-site > div.container.container-main > div.panel-content-genres > div > div > div").get_text().strip()
-					content.append(tempContent)
-			self.results["results"].append(content)
+					self.results["results"].append(tempContent)
 			return self.results
 		except Exception as e:
 			self.results["results"] = e
@@ -121,7 +117,6 @@ class Manganato:
 			soup = BeautifulSoup(response.content, "html.parser")
 
 			cards = soup.select("body > div.body-site > div.container.container-main > div.panel-content-genres > div")
-			content = []
 			
 			for items in cards:
 					tempContent = {}
@@ -132,8 +127,8 @@ class Manganato:
 					tempContent["date"] = infoSelector.find("span", class_="genres-item-time").get_text()
 					tempContent["author"] = infoSelector.find("span", class_="genres-item-author").get_text()
 					tempContent["description"] = items.select_one("body > div.body-site > div.container.container-main > div.panel-content-genres > div > div > div").get_text().strip()
-					content.append(tempContent)
-			self.results["results"].append(content)
+					self.results["results"].append(tempContent)
+					
 			return self.results
 		except Exception as e:
 			self.results["results"] = e
@@ -147,7 +142,6 @@ class Manganato:
 			soup = BeautifulSoup(response.content, "html.parser")
 
 			cards = soup.select("body > div.body-site > div.container.container-main > div.panel-content-genres > div")
-			content = []
 			
 			for items in cards:
 					tempContent = {}
@@ -158,8 +152,8 @@ class Manganato:
 					tempContent["date"] = infoSelector.find("span", class_="genres-item-time").get_text()
 					tempContent["author"] = infoSelector.find("span", class_="genres-item-author").get_text()
 					tempContent["description"] = items.select_one("body > div.body-site > div.container.container-main > div.panel-content-genres > div > div > div").get_text().strip()
-					content.append(tempContent)
-			self.results["results"].append(content)
+					self.results["results"].append(tempContent)
+
 			return self.results
 		except Exception as e:
 			self.results["results"] = e
