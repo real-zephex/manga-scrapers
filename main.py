@@ -52,10 +52,10 @@ def manganato(category: str, path: str = None):
             return Manganato().hotest(page=path)
         else:
             return Manganato().hotest()
-    elif category == "image":
+    elif category == "images":
         if path:
             headers = {
-                "Referer": "https://chapmanganato.to/"
+                "Referer": "    "
             }
             content = requests.get(url=path, headers=headers).content
             return Response(content=content, media_type="image/jpg")
