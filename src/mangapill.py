@@ -137,5 +137,3 @@ class Mangapill:
 		except Exception as e:
 			self.results["results"] = e
 			return self.results	
-
-print(Mangapill().recent())
