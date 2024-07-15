@@ -61,7 +61,7 @@ class Manganato:
 				tempChap["id"] = items.find("a", class_="chapter-name").get("href").split("https://chapmanganato.to/")[1]
 				chapDic.append(tempChap)
 
-			tempContent["chapters"] = chapDic
+			tempContent["chapters"] = chapDic[::-1]
 
 			self.results["results"] = tempContent
 			return self.results
