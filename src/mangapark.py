@@ -12,6 +12,9 @@ class Mangapark:
 			"results": []
 		}
 		self.pattern = r"https:\/\/xfs-n\d+\.xfspp\.com\/comic\/\d+\/[a-zA-Z0-9]+\/[a-f0-9]+\/\d+_\d+_\d+_\d+\.(?:webp|jpeg)"
+		self.pattern_two = r"https:\/\/xfs-n\d+\.xfspp\.com\/comic\/\d+\/[a-zA-Z0-9]+\/[a-zA-Z0-9]+\/[a-zA-Z0-9]+\/\d+_[a-zA-Z0-9]+_\d+_\d+\.(?:webp|jpeg)"
+		self.pattern_three = r"https:\/\/xfs-n\d+\.xfspp\.com\/comic\/\d+\/images+\/[a-zA-Z0-9]+\/[a-zA-Z0-9]+\/[a-zA-Z0-9]+_\d+_\d+_\d+\.(?:webp|jpeg|jpg)"
+		
 
 	def search(self, query:str):
 		try:
@@ -91,10 +94,10 @@ class Mangapark:
 			scriptTags = soup.find_all("script")
 			jsonify = json.loads(scriptTags[-4].text)			
 			pages = []
-
+			
 			for i in jsonify["objs"]:
 				try:
-					if re.match(self.pattern, i):
+					if re.match(self.pattern, i) or re.match(self.pattern_two, i) or re.match(self.pattern_three, i):
 						pages.append(i)
 				except:
 					pass
@@ -125,3 +128,4 @@ class Mangapark:
 		except Exception as e:
 			self.results["results"] = e
 			return self.results
+
