@@ -28,6 +28,7 @@ class Mangapark:
 			for card in cardSelector:
 				tempContent = {}
 				tempContent["title"] = card.find("h3", class_="font-bold space-x-1").get_text()
+				tempContent["image"] = card.find("div", class_="shrink-0 basis-20 md:basis-24").find("div", class_="group relative w-full").find("a").find("img").get("src")
 				tempContent["id"] = card.find("h3", class_="font-bold space-x-1").find("a", class_="link-hover link-pri").get("href").split("/")[2]
 				try:
 					tempContent["authors"] = card.find("div", attrs={"q:key": "6N_0"}).get_text()
