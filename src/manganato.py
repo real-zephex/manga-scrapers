@@ -13,8 +13,7 @@ class Manganato:
 
 	def search(self, query):
 		try:
-			newQuery = query.replace(" ", "_")
-			url = f"{self.proxy_url}{self.parent_url}/search/story/{newQuery}"
+			url = f"{self.proxy_url}{self.parent_url}/search/story/{query}"
 			response = requests.get(url)
 			self.results["status"] = response.status_code
 			soup = BeautifulSoup(response.content, "html.parser")
@@ -158,3 +157,6 @@ class Manganato:
 		except Exception as e:
 			self.results["results"] = e
 			return self.results	
+
+
+print(Manganato().search("solo leveling"))

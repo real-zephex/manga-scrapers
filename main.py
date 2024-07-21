@@ -30,7 +30,9 @@ async def read_root_head():
 @app.get("/manganato/{category}/{path:path}")
 def manganato(category: str, path: str = None):
     if category == "search":
-        return Manganato().search(query=path)
+        if path:
+            newQuery = path.replace(" ", "_")
+            return Manganato().search(query=newQuery)
     elif category == "info":
         if path:
             return Manganato().info(id=path)
