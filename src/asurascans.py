@@ -80,7 +80,7 @@ class Asurascans:
 			soup = BeautifulSoup(response.content, "html.parser")
 
 			imgSelector = soup.select("#readerarea > p > img")
-			self.results["results"] = [i.get("src") for i in imgSelector]
+			self.results["results"] = [i.get("data-src") for i in imgSelector]
 			return self.results
 
 		except Exception as e:
